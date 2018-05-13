@@ -1,0 +1,52 @@
+<?php
+?>
+<div class="container-fluid bg-light">
+    <div class="row pad-1">
+    <h1>Hello <?php echo $this->getUsername() ?>, <?php echo $title; ?>!</h1>
+    </div>
+    <h5>Search by Client Name or Client ID</h5>
+    <div class="row pad-1">
+        
+        <form action="<?php echo $this->getAccountPostUrl(); ?>" enctype="multipart/form-data" method="post">
+            <fieldset>
+                <div class="form-group">
+                    <input class="form-control-sm" placeholder="Client Name" type="text" name="clientname" id="clientname" /> or
+                    <input class="form-control-sm" placeholder="Client ID" type="number" name="client-id" id="client-id" />
+                    <input class="btn btn-primary" id="search-btn" name="search-btn" onclick="submitForm(this.form)" value="Submit" readonly />
+                </div>
+            </fieldset>
+        </form> 
+    </div>
+    <div class="container pad-1" id="results">
+    </div>
+</div>
+<script>
+    function submitForm(form) {
+        
+        let url = form.getAttribute("action");
+        let formData = {}, html;
+        $(form).find("input[name]").each(function(index, node) {
+            formData[node.name] = node.value;
+        });
+        $.post(url, formData).done(function(data) {
+            let results = document.getElementById('results');
+            data = JSON.parse(data);
+            console.log(data);
+            if (data) {
+                if (data.error) {
+                    results.innerHTML = '<p style="color: red">' + data.error + '</p>';
+                } else {
+
+                    html = '<table style="width: 90%; margin: 0 auto 4vw auto"><tr><th>id</th><th>first name</th><th>last name</th><th>address</th><th>country</th><th>zip code</th><th>phone</th></tr>';
+                    html += '<tr><td>' + data.id + '</td><td>' + data.first_name + '</td><td>' + data.last_name + '</td><td>' + data.address + '</td><td>' + data.country + '</td><td>' + data.zip_code + '</td><td>' + data.phone + '</td>';
+                    html += '</tr></table>';
+                    
+                    results.innerHTML = html;
+                 
+                }
+            } else {
+                results.innerHTML = '<p style="color: red;">No Results!</p>';
+            }
+        });
+    }
+</script>

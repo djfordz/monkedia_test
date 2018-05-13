@@ -1,0 +1,27 @@
+<?php
+
+?>
+<div class="container-fluid bg-light">
+  <div class="col-xl-8 align-center pad-10">
+    <div>
+    <h1><?php echo $this->__($title) ?></h1>
+    </div>
+    <form action="<?php echo $this->getLoginPostUrl(); ?>" enctype="multipart/form-data" method="post"> 
+      <fieldset>
+        <div class="form-group">
+          <input autofocus class="form-control-sm" placeholder="Username" type="text" id="username" name="username" required />
+        </div>
+        <div class="form-group">
+          <input class="form-control-sm" placeholder="Password" type="password" id="password" name="password" required />
+        </div> 
+        <div class="form-group">
+        <button id="login-btn" class="btn btn-primary"><?php echo $this->__($title) ?></button>
+        </div>
+      </fieldset>
+    </form>
+    <div>
+      <p>or <a href="<?php echo $this->url; ?>register">register</a> for an account</p>
+    </div>
+  </div>
+</div>
+  

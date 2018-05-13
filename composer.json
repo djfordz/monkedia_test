@@ -1,0 +1,19 @@
+{
+    "name": "dford/monkedia_test",
+    "description": "monkedia test",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Ford",
+            "email": "djfordz@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Monkedia\\Test\\": "app/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}

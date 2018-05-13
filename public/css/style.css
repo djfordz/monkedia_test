@@ -1,0 +1,32 @@
+body {
+  background-color: #343a40;
+}
+
+.pad-10 {
+  padding: 10vw;
+}
+.pad-1 {
+  padding: 1em;
+}
+.align-center {
+  margin: 2vw auto 2vw auto;
+  text-align: center;
+}
+
+.jumbotron h1 {
+  font-size: 2rem;
+}
+.jumbotron h2 {
+  font-size: 1.2rem;
+}
+.jumbotron h3 {
+  font-size: 1rem;
+}
+
+#title {
+}
+#copyright {
+  color: #fff;
+}
+
+

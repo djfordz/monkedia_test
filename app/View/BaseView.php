@@ -1,0 +1,71 @@
+<?php
+
+namespace Monkedia\Test\View;
+
+/**
+ * This is not a real abstract class as it is instantiated in abstract controller. 
+ * Just called abstract as it is the base View Class where all real views will extend from.
+ */
+class BaseView
+{
+    const VIEW = 'Monkedia\\Test\\View\\';
+
+    protected $dir;
+    public $url = 'http://monkedia.io/';
+
+    public function __construct() {
+        $this->dir = dirname(dirname(__FILE__));
+    }
+
+    public function render($templateName, Array $data = null) 
+    {
+        $template = $this->dir . "/_layouts/{$templateName}" . '.phtml';
+
+        if (file_exists($template)) {
+            if (isset($data)) {
+                extract($data);
+            }
+            ob_start();
+            require $this->dir . "/_layouts/header.phtml";
+            require $template;
+            require $this->dir . "/_layouts/footer.phtml";
+
+            $strView = ob_get_contents();
+            ob_clean();
+
+            echo $strView;
+        } else {
+            $this->apologize(['message' => 'Template does not exist']); 
+        }
+        
+    }
+
+    public function load($viewName)
+    {
+        $view =  self::VIEW . ucwords($viewName) . 'View';
+
+        // If exists, Instantiate the view.
+        if (class_exists($view)) {
+            return new $view();
+        } else {
+            throw new \Exception('View does not exist.');
+        }
+    }
+
+    public function apologize(Array $data)
+    {
+        $template = $this->dir . '/_layouts/apologize.phtml';
+
+        extract($data);
+
+        require $this->dir . "/_layouts/header.phtml";
+        require $template;
+        require $this->dir . "/_layouts/footer.phtml";
+
+    }
+
+    public function __($message)
+    {
+        return htmlspecialchars($message);
+    }
+}

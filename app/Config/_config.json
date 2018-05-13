@@ -1,0 +1,11 @@
+{
+    "base_dir": "/home/dford/web_projects/monkedia_test/application/",
+    "url": "http://monkedia.io/",
+    "database": {
+        "type": "mysql",
+        "host": "localhost",
+        "name": "monkedia_test",
+        "user": "monkedia_test",
+        "password": "monkedia_test"
+    }
+}

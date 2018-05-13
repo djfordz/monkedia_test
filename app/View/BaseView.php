@@ -58,10 +58,15 @@ class BaseView
 
         extract($data);
 
+        ob_start();
         require $this->dir . "/_layouts/header.phtml";
         require $template;
         require $this->dir . "/_layouts/footer.phtml";
 
+        $strView = ob_get_contents();
+        ob_clean();
+
+        echo $strView;
     }
 
     public function __($message)

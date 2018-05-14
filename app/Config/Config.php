@@ -39,9 +39,4 @@ class Config
     public function getUrl() {
         return $this->_config->url;
     }
-
-    public function getBaseDir()
-    {
-        return $this->_config->base_dir;
-    }
 }

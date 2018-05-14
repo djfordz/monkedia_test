@@ -44,9 +44,11 @@ final class App
                 } else {
                     $this->controller->index();
                 } 
+                // if session id exists
             } else if (isset($_SESSION['id'])) {
                 // instantiate the controller.
                 $this->controller = new $this->controller();
+                // check to see if logged in.
                 if ($index->session($_SESSION['id'])) {
                     // check if controller has action (method).
                     if (method_exists($this->controller, $this->action)) {

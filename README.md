@@ -36,4 +36,22 @@ server {
 }
 ```
 
+navigate to (http://monkedia.io)[http://monkedia.io] (if you added a hosts entry to your hosts file)
+
+otherwise change base url in config. Change desired config in Config/_config.json
+
+
+```
+{
+    "url": "http://monkedia.io/",
+    "database": {
+        "type": "mysql",
+        "host": "localhost",
+        "name": "monkedia_test",
+        "user": "monkedia_test",
+        "password": "monkedia_test"
+    }
+}
+```
+
 will have it hosted live shortly at mefu.ninja

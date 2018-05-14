@@ -38,7 +38,7 @@ server {
 
 navigate to (http://monkedia.io)[http://monkedia.io] (if you added a hosts entry to your hosts file)
 
-otherwise change base url in config. Change desired config in Config/_config.json
+otherwise change base url in config. Change desired config in app/Config/_config.json
 
 
 ```
@@ -54,4 +54,4 @@ otherwise change base url in config. Change desired config in Config/_config.jso
 }
 ```
 
-will have it hosted live shortly at mefu.ninja
+Currently Hosted at (http://mefu.ninja)[http://mefu.ninja];

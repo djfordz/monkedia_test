@@ -30,20 +30,27 @@ class AccountController extends AbstractController
 
             $rows;
             if (!empty($clientId)  && !empty($clientName)) {
-                $rows = ["error" => "Please use only client id or client first name to search"];
+                // if both are filled
+                $rows = array(["error" => "Please use only client id or client first name to search"]);
             } else if (!empty($clientId)) {
+                // query db for id
                 $rows = $this->_accountModel->searchId($clientId);
             } else if (!empty($clientName)) {
+                // query db for first name
                 $rows = $this->_accountModel->searchName($clientName);
             } else {
-                $rows = ['error' => 'Please fill in either Client Id or Client First Name to Search'];
+                // if fields empty
+                $rows = array(['error'=> 'Please fill in either Client Id or Client First Name to Search']);
             }
             
             if (count($rows) === 1) {
-                print json_encode($rows[0]);
+                // if record found
+                print json_encode($rows[0], JSON_PARTIAL_OUTPUT_ON_ERROR);
             } else if ($rows !== false) {
+                // if row exists (error row) 
                 print json_encode($rows, JSON_PARTIAL_OUTPUT_ON_ERROR);
             } else {
+                // if false, (no record)
                 print json_encode(["error" => "No Results"]);
             }
         }
@@ -51,8 +58,15 @@ class AccountController extends AbstractController
 
     public function listClients()
     {
+        // query db
         $rows = $this->_accountModel->listClients();
 
-        print json_encode($rows, JSON_PARTIAL_OUTPUT_ON_ERROR);
+        if (count($rows) > 0) {
+            // print results
+            print json_encode($rows, JSON_PARTIAL_OUTPUT_ON_ERROR);
+        } else {
+            // print error if false
+            print json_encode(array(['error' => "Data could not be retrieved."]), JSON_PARTIAL_OUTPUT_ON_ERROR);
+        }
     }
 }

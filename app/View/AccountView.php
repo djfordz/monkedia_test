@@ -2,22 +2,20 @@
 
 namespace Monkedia\Test\View;
 
-use Monkedia\Test\Model\AccountModel as Account;
-
 class AccountView extends BaseView
 {
 
-    protected $_model;
+    protected $_accountModel;
 
     public function __construct()
     {
         parent::__construct();
-        $this->_model = new Account();
+        $this->_accountModel = $this->_model->load('account');
     }
 
     public function getUsername()
     {
-        return $this->_model->getUsername($_SESSION['id']);
+        return $this->_accountModel->getUsername($_SESSION['id']);
     }
 
     public function getAccountPostUrl()

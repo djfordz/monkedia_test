@@ -11,17 +11,16 @@ use Monkedia\Test\Model\BaseModel;
 abstract class AbstractController
 {
 
-    // base uri
-    const BASE = 'http://monkedia.io/';
-
     protected $_view;
     protected $_model;
+    public $url;
     
     public function __construct()
     {
         // instantiate base view and base model
         $this->_view = new BaseView();
         $this->_model = new BaseModel();
+        $this->url = $this->_model->url;
     }
 
     // every controller must have at least an index method
@@ -41,7 +40,7 @@ abstract class AbstractController
 
     // redirect base
     public function redirectBase($url = '') {
-        $buildUrl = self::BASE . $url;
+        $buildUrl = $this->url . $url;
         header("Location: $buildUrl");
         exit;
     }

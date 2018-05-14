@@ -38,4 +38,15 @@ class AccountModel extends BaseModel
 
         return false;
     }
+
+    public function listClients()
+    {
+        $rows = $this->query('SELECT * from clients');
+
+        if (count($rows) > 0) {
+            return $rows;
+        }
+
+        return false;
+    }
 }

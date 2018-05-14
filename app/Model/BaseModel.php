@@ -14,12 +14,15 @@ class BaseModel
 
     protected $db;
 
+    public $url;
+
     public function __construct()
     {
         // load config
         $this->_config = new Config();
         // establish database connection
         $this->dbConn();
+        $this->url = $this->_config->getUrl();
     }
 
     public function load($name)

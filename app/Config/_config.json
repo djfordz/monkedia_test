@@ -1,5 +1,4 @@
 {
-    "base_dir": "/home/dford/web_projects/monkedia_test/application/",
     "url": "http://monkedia.io/",
     "database": {
         "type": "mysql",

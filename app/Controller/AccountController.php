@@ -41,9 +41,18 @@ class AccountController extends AbstractController
             
             if (count($rows) === 1) {
                 print json_encode($rows[0]);
-            } else {
+            } else if ($rows !== false) {
                 print json_encode($rows);
-            }            
+            } else {
+                print json_encode(["error" => "No Results"]);
+            }
         }
+    }
+
+    public function listClients()
+    {
+        $rows = $this->_accountModel->listClients();
+
+        print json_encode($rows);
     }
 }

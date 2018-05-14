@@ -2,6 +2,8 @@
 
 namespace Monkedia\Test\View;
 
+use Monkedia\Test\Model\BaseModel as BaseModel;
+
 /**
  * This is not a real abstract class as it is instantiated in abstract controller. 
  * Just called abstract as it is the base View Class where all real views will extend from.
@@ -11,10 +13,14 @@ class BaseView
     const VIEW = 'Monkedia\\Test\\View\\';
 
     protected $dir;
-    public $url = 'http://monkedia.io/';
+    protected $_model;
+
+    public $url;
 
     public function __construct() {
+        $this->_model = new BaseModel;
         $this->dir = dirname(dirname(__FILE__));
+        $this->url = $this->_model->url;
     }
 
     public function render($templateName, Array $data = null) 

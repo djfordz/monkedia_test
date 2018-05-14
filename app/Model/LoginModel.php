@@ -19,13 +19,13 @@ class LoginModel extends BaseModel
             $row = $rows[0];
 
             // check password
-            if (crypt($password, $row['password']) == $row["password"])
+            if (password_verify($password, $row['password']) == $row["password"])
             {
                 // assign session id.
                 $_SESSION["id"] = $row["id"];
                 return true;
             } else {
-                // not not valid return false;
+                // not valid return false;
                 return false;
             }
         } 

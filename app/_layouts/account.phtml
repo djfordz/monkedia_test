@@ -17,10 +17,17 @@
             </fieldset>
         </form> 
     </div>
+    <div><p>Or <a id="list-clients" href="">List Clients</a></p></div>
     <div class="container pad-1" id="results">
     </div>
 </div>
 <script>
+    let link = document.getElementById('list-clients');
+    let results = document.getElementById('results');
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        list();
+    });
     function submitForm(form) {
         
         let url = form.getAttribute("action");
@@ -29,9 +36,7 @@
             formData[node.name] = node.value;
         });
         $.post(url, formData).done(function(data) {
-            let results = document.getElementById('results');
             data = JSON.parse(data);
-            console.log(data);
             if (data) {
                 if (data.error) {
                     results.innerHTML = '<p style="color: red">' + data.error + '</p>';
@@ -46,6 +51,32 @@
                 }
             } else {
                 results.innerHTML = '<p style="color: red;">No Results!</p>';
+            }
+        });
+    }
+
+    function list() {
+        let url = '<?php echo $this->url ?>account/listClients';
+        $.ajax(url).done(function(data) {
+            if (data) {
+                data = JSON.parse(data);
+                console.log(data);
+                if (data.error) {
+                    results.innerHTML = '<p style="color: red">' + data.error + '</p>';
+                } else {
+                    html = '<table style="width: 90%; margin: 0 auto 4vw auto"><tr><th>id</th><th>first name</th><th>last name</th><th>address</th><th>country</th><th>zip code</th><th>phone</th></tr><tr>';
+
+                    for (let i = 0; i < data.length; i++) {
+                        if (i % 7 == 0) {
+                            html += '</tr><tr>';
+                        }
+                        html += '<tr><td>' + data[i].id + '</td><td>' + data[i].first_name + '</td><td>' + data[i].last_name + '</td><td>' + data[i].address + '</td><td>' + data[i].country + '</td><td>' + data[i].zip_code + '</td><td>' + data[i].phone + '</td>';
+ 
+                    }
+                    html += '</tr></table>';
+
+                    results.innerHTML = html;
+                }
             }
         });
     }

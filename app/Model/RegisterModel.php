@@ -13,7 +13,7 @@ class RegisterModel extends BaseModel
         }
 
         // make insert query to db
-        $this->query('INSERT INTO users (email, username, password) VALUES (?, ?, ?)', $email, $name, crypt($password));
+        $this->query('INSERT INTO users (email, username, password) VALUES (?, ?, ?)', $email, $name, password_hash($password, PASSWORD_BCRYPT));
 
         // retrieve last insert
         $rows = $this->query('SELECT LAST_INSERT_ID() AS id');

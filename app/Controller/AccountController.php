@@ -42,7 +42,7 @@ class AccountController extends AbstractController
             if (count($rows) === 1) {
                 print json_encode($rows[0]);
             } else if ($rows !== false) {
-                print json_encode($rows);
+                print json_encode($rows, JSON_PARTIAL_OUTPUT_ON_ERROR);
             } else {
                 print json_encode(["error" => "No Results"]);
             }
@@ -53,6 +53,6 @@ class AccountController extends AbstractController
     {
         $rows = $this->_accountModel->listClients();
 
-        print json_encode($rows);
+        print json_encode($rows, JSON_PARTIAL_OUTPUT_ON_ERROR);
     }
 }

@@ -2,7 +2,7 @@ clone the repo.
 
 run `npm install && composer install`
 
-create database and user called monkedia_test. Can change config in Config/config.json if needed.
+create database and user called monkedia_test. Can change config in `pp/Config/_config.json` if needed.
 
 import data in _install/monkedia_test.sql.gz
 
@@ -36,7 +36,7 @@ server {
 }
 ```
 
-navigate to (http://monkedia.io)[http://monkedia.io] (if you added a hosts entry to your hosts file)
+navigate to [http://monkedia.io](http://monkedia.io) (if you added a hosts entry to your hosts file)
 
 otherwise change base url in config. Change desired config in app/Config/_config.json
 
@@ -54,4 +54,4 @@ otherwise change base url in config. Change desired config in app/Config/_config
 }
 ```
 
-Currently Hosted at (http://mefu.ninja)[http://mefu.ninja];
+Currently Hosted at [http://mefu.ninja](http://mefu.ninja);
